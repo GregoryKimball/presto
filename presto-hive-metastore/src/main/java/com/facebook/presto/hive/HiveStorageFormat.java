@@ -107,7 +107,12 @@ public enum HiveStorageFormat
             "",  // SerDe is not applicable for PAGEFILE
             "PageInputFormat",
             "PageOutputFormat",
-            new DataSize(0, Unit.MEGABYTE));  // memory usage is not applicable for PAGEFILE
+            new DataSize(0, Unit.MEGABYTE)),  // memory usage is not applicable for PAGEFILE
+    NIMBLE(
+            "com.facebook.presto.hive.nimble.NimbleSerDe",
+            "com.facebook.presto.hive.nimble.NimbleInputFormat",
+            "com.facebook.presto.hive.nimble.NimbleOutputFormat",
+            new DataSize(256, Unit.MEGABYTE));
 
     private final String serde;
     private final String inputFormat;

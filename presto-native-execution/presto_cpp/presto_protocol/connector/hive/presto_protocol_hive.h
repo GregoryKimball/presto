@@ -223,7 +223,8 @@ enum class HiveStorageFormat {
   JSON,
   TEXTFILE,
   CSV,
-  PAGEFILE
+  PAGEFILE,
+  NIMBLE
 };
 
 void to_json(json& j, const HiveStorageFormat& p);

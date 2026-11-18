@@ -89,6 +89,11 @@ if(PRESTO_ENABLE_CUDF)
   endif()
 endif()
 
+if(PRESTO_ENABLE_NIMBLE)
+  # Nimble is not included in the Velox mono library either.
+  target_link_libraries(presto_server_lib nimble_velox_selective)
+endif()
+
 if(PRESTO_ENABLE_REMOTE_FUNCTIONS)
   add_library(presto_server_remote_function JsonSignatureParser.cpp RemoteFunctionRegisterer.cpp)
 

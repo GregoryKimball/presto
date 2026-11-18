@@ -241,6 +241,7 @@ import static com.facebook.presto.hive.HiveStorageFormat.AVRO;
 import static com.facebook.presto.hive.HiveStorageFormat.CSV;
 import static com.facebook.presto.hive.HiveStorageFormat.DWRF;
 import static com.facebook.presto.hive.HiveStorageFormat.JSON;
+import static com.facebook.presto.hive.HiveStorageFormat.NIMBLE;
 import static com.facebook.presto.hive.HiveStorageFormat.ORC;
 import static com.facebook.presto.hive.HiveStorageFormat.PAGEFILE;
 import static com.facebook.presto.hive.HiveStorageFormat.PARQUET;
@@ -5880,7 +5881,8 @@ public abstract class AbstractTestHiveClient
                 ImmutableSet.copyOf(HiveStorageFormat.values()),
                 // exclude formats that change table schema with serde
                 // exclude ALPHA because it does not support DML yet
-                ImmutableSet.of(AVRO, CSV, ALPHA));
+                // exclude NIMBLE because it is only readable by Presto C++ workers
+                ImmutableSet.of(AVRO, CSV, ALPHA, NIMBLE));
     }
 
     private List<TableConstraint<String>> getTableConstraints(SchemaTableName tableName)
