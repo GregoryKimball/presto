@@ -82,6 +82,8 @@ dwio::common::FileFormat toFileFormat(
     case protocol::hive::HiveStorageFormat::ALPHA:
       // This has been renamed in Velox from ALPHA to NIMBLE.
       return dwio::common::FileFormat::NIMBLE;
+    case protocol::hive::HiveStorageFormat::NIMBLE:
+      return dwio::common::FileFormat::NIMBLE;
     case protocol::hive::HiveStorageFormat::TEXTFILE:
       return dwio::common::FileFormat::TEXT;
     default:
@@ -255,6 +257,10 @@ dwio::common::FileFormat toVeloxFileFormat(
     }
   } else if (format.inputFormat == "com.facebook.alpha.AlphaInputFormat") {
     // ALPHA has been renamed in Velox to NIMBLE.
+    return dwio::common::FileFormat::NIMBLE;
+  } else if (
+      format.inputFormat ==
+      "com.facebook.presto.hive.nimble.NimbleInputFormat") {
     return dwio::common::FileFormat::NIMBLE;
   }
   VELOX_UNSUPPORTED(

@@ -913,7 +913,8 @@ static const std::pair<HiveStorageFormat, json> HiveStorageFormat_enum_table[] =
         {HiveStorageFormat::JSON, "JSON"},
         {HiveStorageFormat::TEXTFILE, "TEXTFILE"},
         {HiveStorageFormat::CSV, "CSV"},
-        {HiveStorageFormat::PAGEFILE, "PAGEFILE"}};
+        {HiveStorageFormat::PAGEFILE, "PAGEFILE"},
+        {HiveStorageFormat::NIMBLE, "NIMBLE"}};
 
 void to_json(json& j, const HiveStorageFormat& p) {
   static_assert(

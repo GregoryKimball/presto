@@ -81,6 +81,9 @@
 #include "velox/dwio/parquet/RegisterParquetWriter.h"
 #include "velox/dwio/text/RegisterTextReader.h"
 #include "velox/dwio/text/RegisterTextWriter.h"
+#ifdef PRESTO_ENABLE_NIMBLE
+#include "velox/dwio/nimble/selective/SelectiveNimbleReader.h"
+#endif
 #include "velox/exec/DefaultOutputBufferManager.h"
 #include "velox/exec/TraceUtil.h"
 #include "velox/exec/rpc/RPCPlanNodeTranslator.h"
@@ -1760,6 +1763,9 @@ void PrestoServer::registerFileReadersAndWriters() {
   if (SystemConfig::instance()->textReaderEnabled()) {
     velox::text::registerTextReaderFactory();
   }
+#ifdef PRESTO_ENABLE_NIMBLE
+  nimble::registerSelectiveNimbleReaderFactory();
+#endif
 }
 
 void PrestoServer::unregisterFileReadersAndWriters() {
@@ -1773,6 +1779,9 @@ void PrestoServer::unregisterFileReadersAndWriters() {
   if (SystemConfig::instance()->textReaderEnabled()) {
     velox::text::unregisterTextReaderFactory();
   }
+#ifdef PRESTO_ENABLE_NIMBLE
+  nimble::unregisterSelectiveNimbleReaderFactory();
+#endif
 }
 
 void PrestoServer::registerStatsCounters() {

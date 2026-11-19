@@ -413,7 +413,7 @@ public abstract class AbstractTestHiveFileSystem
     {
         // CSV supports only unbounded VARCHAR type, and Alpha does not support DML yet
         return Arrays.stream(HiveStorageFormat.values())
-                .filter(format -> format != HiveStorageFormat.CSV && format != HiveStorageFormat.ALPHA)
+                .filter(format -> format != HiveStorageFormat.CSV && format != HiveStorageFormat.ALPHA && format != HiveStorageFormat.NIMBLE)
                 .collect(toImmutableList());
     }
 

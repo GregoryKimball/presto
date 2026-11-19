@@ -122,6 +122,9 @@ option(PRESTO_ENABLE_ABFS "Build ABFS support" OFF)
 # Forwards user input to VELOX_ENABLE_PARQUET.
 option(PRESTO_ENABLE_PARQUET "Enable Parquet support" ON)
 
+# Forwards user input to VELOX_ENABLE_NIMBLE.
+option(PRESTO_ENABLE_NIMBLE "Enable Nimble support" OFF)
+
 # Forwards user input to VELOX_ENABLE_CUDF.
 option(PRESTO_ENABLE_CUDF "Enable cuDF support" OFF)
 
@@ -150,6 +153,11 @@ set(VELOX_ENABLE_GCS ${PRESTO_ENABLE_GCS} CACHE BOOL "Build GCS support")
 set(VELOX_ENABLE_ABFS ${PRESTO_ENABLE_ABFS} CACHE BOOL "Build ABFS support")
 
 set(VELOX_ENABLE_PARQUET ${PRESTO_ENABLE_PARQUET} CACHE BOOL "Enable Parquet support")
+
+set(VELOX_ENABLE_NIMBLE ${PRESTO_ENABLE_NIMBLE} CACHE BOOL "Enable Nimble support")
+if(PRESTO_ENABLE_NIMBLE)
+  add_compile_definitions(PRESTO_ENABLE_NIMBLE)
+endif()
 
 set(
   VELOX_ENABLE_REMOTE_FUNCTIONS
